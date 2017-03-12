@@ -52,20 +52,21 @@ public class DemoApplication {
 			primaryTerms =  new ArrayList<Term>();
 			secondaryTerms = new ArrayList<Term>();
 			Term term1 = new Term(1, "Milkshake",classes.get(0));
-			Term term2 = new Term(2, "Hotchocolate",classes.get(2));
-			Term term3 = new Term(3, "coffee",classes.get(1));
-			Term term4 = new Term(4, "tea",classes.get(0));	
-			Term term5 = new Term(5, "water",classes.get(3));
+			Term term2 = new Term(2, "Hot Chocolate",classes.get(2));
+			Term term3 = new Term(3, "Coffee",classes.get(1));
+			Term term4 = new Term(4, "Tea",classes.get(0));	
+			Term term5 = new Term(5, "Water",classes.get(3));
 							
 			primaryTerms.add(term1);
 			primaryTerms.add(term3);
 			primaryTerms.add(term4);
 			
 			Collections.sort(primaryTerms, new TermClassComparator());
-			
-			//primaryTerms.sort(primaryTerms);
+
 			secondaryTerms.add(term2);
 			secondaryTerms.add(term5);
+			
+			Collections.sort(secondaryTerms, new TermClassComparator());
 			
 			serviceLevels=new ArrayList<ServiceLevel>();
 					
