@@ -85,13 +85,20 @@ public class DemoApplication {
 			serviceLevels.add(level2);
 			serviceLevels.add(level3);
 			
-			log.info("Testing my cool Bean!");
+			log.info("Testing my cool Bean!");	
 			
 			database = new FormDaoImpl();
 			database.setNamedParameterJdbcTemplate(namedParameterJdbcTemplate);
 			
+			List forms = database.listForms();
+			
+			System.out.println("muumi: " + forms);
+			System.out.println("muumi.size(): " + forms.size());
+			
 			//TEST DATABASE VALUES: Remember that two creates of the same value crash the app!
-			//database.create(3, "asdf");					
+			//database.create(3, "asdf");
+
+					
 
 		};
 	}

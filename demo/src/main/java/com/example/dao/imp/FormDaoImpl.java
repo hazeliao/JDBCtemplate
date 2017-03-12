@@ -40,7 +40,7 @@ public class FormDaoImpl implements FormDao{
 	@Override
 	public Form getForm(Integer formId){
 		String SQL = "SELECT * FROM Form WHERE id= :id";
-		SqlParameterSource namedParameters = new MapSqlParameterSource("empid", Integer.valueOf(formId));
+		SqlParameterSource namedParameters = new MapSqlParameterSource("id", Integer.valueOf(formId));
 		Form form = (Form) namedParameterJdbcTemplate.queryForObject(SQL, namedParameters, new FormMapper());
 		return form;
 	}

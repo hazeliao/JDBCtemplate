@@ -3,14 +3,14 @@ package com.example.domain;
 public class Form {
 	
 	private long id;
-	private String formName;
+	private String name;
 	
 	public Form(){}
 
-	public Form(long id, String formName) {
+	public Form(long id, String name) {
 		super();
 		this.id = id;
-		this.formName = formName;
+		this.name = name;
 	}
 
 	public long getId() {
@@ -21,17 +21,17 @@ public class Form {
 		this.id = id;
 	}
 
-	public String getFormName() {
-		return formName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFormName(String formName) {
-		this.formName = formName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
 	public String toString() {
-		return "Form [id=" + id + ", formName=" + formName + "]";
+		return "Form [id=" + id + ", name=" + name + "]";
 	}
 	
 	

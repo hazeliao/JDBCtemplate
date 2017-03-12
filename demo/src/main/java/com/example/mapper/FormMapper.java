@@ -12,7 +12,7 @@ public class FormMapper implements RowMapper{
 	public Form mapRow(ResultSet rs, int rowNum) throws SQLException{
 		Form form= new Form();
 		form.setId(rs.getLong("id"));
-		form.setFormName("formName");
+		form.setName(rs.getString("name"));
 		return form;
 	}
 

@@ -85,6 +85,13 @@
                 </li>
                 <li>Applicant details</li>
                 <li>Final provisions</li>
+                
+                <li> Form List 
+                	<br />
+                	<#list forms as form>
+                	<p>${form.name} : ${form.id}</p>
+                	</#list>
+                </li>
                 <button type="submit">Submit</button>               
             </ul>
         </div>
