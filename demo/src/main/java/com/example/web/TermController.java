@@ -26,7 +26,10 @@ public class TermController {
 		FormTerm formTerm = new FormTerm("drinks", DemoApplication.primaryTerms, DemoApplication.secondaryTerms);
 		model.addAttribute("formTerm", formTerm);
 		model.addAttribute("serviceLevels", DemoApplication.serviceLevels);
-
+		
+		//DemoApplication.database.create(id, name);
+		//DemoApplication.database.delete(id);
+	
 		return "index";
 	}
 

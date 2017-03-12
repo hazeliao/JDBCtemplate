@@ -5,7 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
+import com.example.dao.imp.FormDaoImpl;
 import com.example.domain.ServiceLevel;
 import com.example.domain.Term;
 import com.example.domain.TermClass;
@@ -14,7 +17,9 @@ import com.example.domain.TermClassComparator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +41,10 @@ public class DemoApplication {
 	
 	public static ArrayList<Term> secondaryTerms;
 	
+	public static FormDaoImpl database; 
+	
 	@Bean
-	public CommandLineRunner demo(){
+	public CommandLineRunner demo(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
 		return(args) -> {
 			log.info("save a couple of cps");
 			
@@ -80,7 +87,12 @@ public class DemoApplication {
 			
 			log.info("Testing my cool Bean!");
 			
-	
+			database = new FormDaoImpl();
+			database.setNamedParameterJdbcTemplate(namedParameterJdbcTemplate);
+			
+			//TEST DATABASE VALUES: Remember that two creates of the same value crash the app!
+			//database.create(3, "asdf");					
+
 		};
 	}
 }
