@@ -43,12 +43,6 @@ public class DemoApplication {
 			
 			
 			// Create users: admin/admin user/user
-//			TermClass class1 = new TermClass(1);
-//			TermClass class2 = new TermClass(2);
-//			TermClass class3 = new TermClass(3);
-//			TermClass class4 = new TermClass(4);
-//			TermClass class5 = new TermClass(5);
-//			TermClass class6 = new TermClass(6);
 			classes = new ArrayList<TermClass>();
 			for ( int i = 0; i < 6; i++ )
 			{
