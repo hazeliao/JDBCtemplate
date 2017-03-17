@@ -1,8 +1,6 @@
 package com.example.domain;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 //@Entity
 public class FormTerm {

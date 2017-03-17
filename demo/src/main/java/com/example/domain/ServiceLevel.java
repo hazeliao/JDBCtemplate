@@ -7,15 +7,15 @@ public class ServiceLevel {
 	
 	private long id;
 	
-	private String serviceName;
+	private String name;
 	private double price;
 	
 	public ServiceLevel(){}
 
-	public ServiceLevel(long id, String serviceName, double price) {
+	public ServiceLevel(long id, String name, double price) {
 		super();
 		this.id = id;
-		this.serviceName = serviceName;
+		this.name = name;
 		this.price = price;
 	}
 
@@ -27,12 +27,12 @@ public class ServiceLevel {
 		this.id = id;
 	}
 
-	public String getServiceName() {
-		return serviceName;
+	public String getName() {
+		return name;
 	}
 
-	public void setServiceName(String serviceName) {
-		this.serviceName = serviceName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public double getPrice() {
@@ -45,7 +45,7 @@ public class ServiceLevel {
 
 	@Override
 	public String toString() {
-		return "ServiceLevel [id=" + id + ", serviceName=" + serviceName + ", price=" + price + "]";
+		return "ServiceLevel [id=" + id + ", serviceName=" + name + ", price=" + price + "]";
 	}
 	
 	

@@ -11,7 +11,7 @@ public class Term {
  	//@Id	
  	//@GeneratedValue(strategy=GenerationType.AUTO)	
 	private long id;
-	private String termName;
+	private String name;
 	
  	//@ManyToOne
  	//@JsonIgnore
@@ -21,10 +21,10 @@ public class Term {
 	
 	public Term(){}
 
-	public Term(long id, String termName, TermClass termClass) {
+	public Term(long id, String name, TermClass termClass) {
 		super();
 		this.id = id;
-		this.termName = termName;
+		this.name = name;
 		this.termClass = termClass;
 	}
 
@@ -36,12 +36,12 @@ public class Term {
 		this.id = id;
 	}
 
-	public String getTermName() {
-		return termName;
+	public String getName() {
+		return name;
 	}
 
-	public void setTermName(String termName) {
-		this.termName = termName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public TermClass getTermClass() {
@@ -54,7 +54,7 @@ public class Term {
 
 	@Override
 	public String toString() {
-		return "Term [id=" + id + ", termName=" + termName + ", termClass=" + termClass + "]";
+		return "Term [id=" + id + ", termName=" + name + ", termClass=" + termClass + "]";
 	}
 	
 	

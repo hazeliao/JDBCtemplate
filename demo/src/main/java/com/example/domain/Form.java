@@ -1,16 +1,28 @@
 package com.example.domain;
 
+import java.util.ArrayList;
+
 public class Form {
 	
 	private long id;
 	private String name;
+	//@OneToMany (cascade = CascadeType.ALL, mappedBy = "terms1")
+	private ArrayList<Term> terms1;
 	
+	//@OneToMany (cascade = CascadeType.ALL, mappedBy = "terms2")
+	private ArrayList<Term> terms2;
+	
+	private  ArrayList<ServiceLevel> serviceLevels;
+
 	public Form(){}
 
 	public Form(long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.terms1 = null;
+		this.terms2 = null;
+		this.serviceLevels = null;
 	}
 
 	public long getId() {
@@ -27,6 +39,30 @@ public class Form {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public ArrayList<Term> getTerms1() {
+		return terms1;
+	}
+
+	public void setTerms1(ArrayList<Term> terms1) {
+		this.terms1 = terms1;
+	}
+
+	public ArrayList<Term> getTerms2() {
+		return terms2;
+	}
+
+	public void setTerms2(ArrayList<Term> terms2) {
+		this.terms2 = terms2;
+	}
+	
+	public ArrayList<ServiceLevel> getServiceLevels() {
+		return serviceLevels;
+	}
+
+	public void setServiceLevels(ArrayList<ServiceLevel> serviceLevels) {
+		this.serviceLevels = serviceLevels;
 	}
 
 	@Override

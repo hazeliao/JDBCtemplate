@@ -3,18 +3,40 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />    
+     
+    <link rel="stylesheet" type="text/css" href="../css/universal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat">  
 </head>
 
 <body>
-    <!-- Start of first page -->
-    <div id="main">       
-            
-        <h1>Complete application details</h1>
-        
-        <div>
+    <div>
+        <a href="industrypage"><img id="logo" src="../images/nya.png"></a>
+        <nav id="nav">
             <ul>
-                <li><b>Trademark(s) details</b>(See further instructions and comments, new window)
+                <li id="industryPageNav" class="navLi active"><a>APPLY NOW</a></li>
+                <li id="serviceNav" class="navLi"><a>Cost and Fees</a></li>
+                <li id="resourcesNav" class="navLi"><a>Resources</a></li>
+                <li id="aboutNav" class="navLi"><a>About</a></li>
+                <li id="contactNav" class="navLi"><a>Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div>       
+        <div class="mainHeader">
+            <div class="content-title">
+            	<br>
+                <span class="headerIcon"><span class="activeHeaderIcon" >①</span>②③</span>
+                <h2><span id="headerSpan">Choose your destiny</span><br></h2>
+                <h4><span id="headerSpan2">Your qalatic conquest beings here, become The Kitty of universe.</span></h4>
+            </div>
+        </div>         
+        <h1>Complete application details</h1>
+        <h2>${form.name}</h2>
+        <input type="hidden" name="formId" id="formId" value="${form.id}" />
+        <div>
+            <h2>1. Trademark(s) details</h2>(See further instructions and comments, new window)
                 	<p>If you want to file two trademarks, please note that the goods and services will be the same for both marks. If you want to file another trademark for other goods and services, please fill a separate form for the second trademark.</p>
                 	    <div>    		
 						    <br />
@@ -32,20 +54,20 @@
 						    <input type="file" name="file" id="tradeMarkeFile"/>
 						    <br />
 					    </div>               
-                </li>
-                <li>Goods and services
+                
+                <h2>2. Goods and services</h2>
                 	<p>The goods and services named in the application determine the extent of your rights. Select the goods and services for your trademark application below. Government fee is determined only by the number of classes (within a class you can choose as many items as you like). Once the application is submitted, it is not possible to add new goods and services. The government fee for the application includes one class. First additional class is 50 EUR and thereafter each class adds 150 EUR to government fees. The number of classes does not affect attorney fees (see below). If you want to protect your trademark for goods and services not found here, please select advanced or premium service level below.</p>                              
                 	<div>	        
 				        <h3>Primary:</h3>
 				       <ul>
 				        	<#assign class = -1>
-				        	<#list formTerm.termPrimary as term>
+				        	<#list form.terms1 as term>
 				        	<#if class!=term.termClass.termClassId>
 				       		<li>Class ${term.termClass.termClassId}
 				       		<#assign class = term.termClass.termClassId>
 					       	</#if>
 						       	<ul> 	        
-						       		<li><input id=${term.id} type="checkbox" value=${term.id}/>${term.termName} </li>
+						       		<li><input id=${term.id} type="checkbox" value=${term.id}/>${term.name} </li>
 						       	</ul> 
 					       	</li>
 					       	
@@ -55,13 +77,13 @@
 				       	<h3>Secondary:</h3>
 				       	<ul>
 				       		<#assign class = -1>
-				       		<#list formTerm.termSecondary as term>
+				       		<#list form.terms2 as term>
 				       		<#if class!=term.termClass.termClassId>
 				       		<li>Class ${term.termClass.termClassId}
 				       		<#assign class = term.termClass.termClassId>
 					       	</#if>
 						       	<ul> 	        
-						       		<li><input id=${term.id} type="checkbox" value=${term.id}/>${term.termName} </li>
+						       		<li><input id=${term.id} type="checkbox" value=${term.id}/>${term.name} </li>
 						       	</ul> 
 					       	</li>
 					       	
@@ -71,29 +93,26 @@
 					    <textarea></textarea>
 					      
 	               	</div>	  
-	            </li>              
-                <li>Service level (See further instructions and comments, new window)
+	                         
+                <h2>3. Service level (See further instructions and comments, new window)</h2>
                 	<br />
                 	<a href="https://www.reggster.com/service-levels.html">Compare plans (new window)</a>
                 	<ul>
-                		<#list serviceLevels as serviceLevel>
-                			<li> ${serviceLevel.serviceName} <br />
-                				 <input id=${serviceLevel.id} type="checkbox" value=${serviceLevel.id}/> Attorney free ${serviceLevel.price} EUR. 
-                			</li>
-                		</#list>
+                		
+				        	<#list form.serviceLevels as serviceLevel>
+				        	
+				       		<li>${serviceLevel.name}    <br /> 
+						       	<input id=${serviceLevel.id} type="radio" name="serviceLevel"  value=${serviceLevel.id}/> Attorney free ${serviceLevel.price}
+						    </li>
+					       	
+					       	</#list> 
                 	</ul>
-                </li>
-                <li>Applicant details</li>
-                <li>Final provisions</li>
                 
-                <li> Form List 
-                	<br />
-                	<#list forms as form>
-                	<p>${form.name} : ${form.id}</p>
-                	</#list>
-                </li>
+                <h2>4. Applicant details</h2>
+                <h2>5. Final provisions</h2>                
+                
                 <button type="submit">Submit</button>               
-            </ul>
+            </ol>
         </div>
         
         

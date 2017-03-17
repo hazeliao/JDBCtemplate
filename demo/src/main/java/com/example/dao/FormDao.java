@@ -10,7 +10,7 @@ public interface FormDao {
 	
 	Form getForm(Integer id);
 	
-	List listForms();
+	List<Form> listForms();
 	
 	void delete(Integer id);
 	

@@ -1,0 +1,186 @@
+div#header {
+	font-family: 'Montserrat', sans-serif;
+	padding: 20px 40px;
+}
+
+#logo {
+	height: 30px;
+}
+#nav {
+    float: right;
+}
+.navLi {
+	
+	border: 1px solid transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    
+    text-transform: uppercase;
+    display: inline;
+    padding: 12px 20px
+}
+#main {
+    font-family: Nunito;
+    display: block;
+    padding: 12px 20px
+}
+
+
+.mainHeader {
+    font-size: 25px;
+    text-align: center;
+}
+.content-title{
+	line-height: 31px !important;
+}
+.activeHeaderIcon {
+    color: #6cb83a;
+}
+.headerIcon {
+    font-size: 24px;
+}
+
+#headerSpan {
+    font-family: 'Montserrat', sans-serif;
+	font-size: 32px;
+	text-align: center;
+	font-weight: normal;
+}
+
+#headerSpan2 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+	line-height: 31px !important;
+	font-weight: normal;
+}
+#content {
+    font-family: Nunito;
+    max-width: 70%;
+    padding-top: 20px;
+    margin: auto;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    -moz-column-fill: balance;
+    column-count: 3;
+    column-fill: balance;
+    
+}
+
+.industryGroup {
+    min-width: 100%;
+    padding-bottom: 20px;
+    float: left;
+    break-inside: avoid-column;
+}
+
+
+.industryField {
+    font-size: 18px;
+    margin-left: -1;
+	padding: 0;
+    font-weight: bold;
+}
+
+.formLink {
+    font-family: Nunito;
+    max-width: inherit;
+    
+}
+
+ul {
+    list-style: none;
+    text-align:left;
+    margin: 0;
+	padding: 0;
+}
+
+.industryGroup img {
+    height: 32px;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+a {
+    text-decoration: none;
+
+}
+
+
+.icon {
+	text-align: center;
+	color: #f16bd8;
+	font-size: 35.3px;
+}
+
+input[type='radio'], 
+input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(0,0,0,0.4) !important;   
+    color: #000000;    
+    line-height: 1;
+    border-radius: 0;
+    vertical-align: middle;
+    /*
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    transition: all 300ms ease;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    text-shadow: none;
+    cursor: pointer;
+    margin: 0px 5px 0px 0px;
+	background-color: initial;    
+    padding: 0;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;   */ 
+  
+    
+}
+
+input[type='checkbox']:after {
+    position: relative;
+    top: 2px;
+    left: 6px;
+    width: 4px;
+    height: 8px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+ul li {
+	font-family: Arial !important;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+p {
+	font-family: Arial !important;
+    font-size: 16px;
+    font-weight: 500;
+}
+
