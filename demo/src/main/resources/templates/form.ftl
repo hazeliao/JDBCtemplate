@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<#import "/spring.ftl" as spring/>
 <html>
 
 <head>
@@ -23,7 +23,9 @@
             </ul>
         </nav>
     </div>
-    <div>       
+    <div>
+    
+           
         <div class="mainHeader">
             <div class="content-title">
             	<br>
@@ -33,8 +35,14 @@
             </div>
         </div>         
         <h1>Complete application details</h1>
-        <h2>${form.name}</h2>
+        
+        <form id="formSubmission" action="/formSubmission" method="post" >
+       	
+        <h2>${form.name}</h2>  
+              
         <input type="hidden" name="formId" id="formId" value="${form.id}" />
+        
+        
         <div>
             <h2>1. Trademark(s) details</h2>(See further instructions and comments, new window)
                 	<p>If you want to file two trademarks, please note that the goods and services will be the same for both marks. If you want to file another trademark for other goods and services, please fill a separate form for the second trademark.</p>
@@ -46,8 +54,8 @@
 						    <br />
 						    <input type="checkbox" name="checkbox-2" value="6" />Other (3d, sound, color, position, movement)
 						    <br />
-						    <label>Words in the trademark</label>
-						    <input type="text" name="name" />
+						    <label>Words in the trademark</label>	
+						    <@spring.formInput "formSubmission.textTrademark"  />
 						    <br />
 						    <label>Other than word marks - upload file(PDF,JPG,PNG)</label>
 						    <br />
@@ -98,22 +106,33 @@
                 	<br />
                 	<a href="https://www.reggster.com/service-levels.html">Compare plans (new window)</a>
                 	<ul>
-                		
-				        	<#list form.serviceLevels as serviceLevel>
-				        	
-				       		<li>${serviceLevel.name}    <br /> 
-						       	<input id=${serviceLevel.id} type="radio" name="serviceLevel"  value=${serviceLevel.id}/> Attorney free ${serviceLevel.price}
+						<#list form.serviceLevels as serviceLevel>
+			        	
+            			<li>${serviceLevel.name}    <br /> 							
+			        
+						 <input id=${serviceLevel.id} type="radio" name="serviceLevel"  value=${serviceLevel.id}/>
+					       	${serviceLevel.id} Attorney free ${serviceLevel.price}
+							
 						    </li>
-					       	
-					       	</#list> 
+				       	
+				       	</#list> 
                 	</ul>
+						        
+						       
+						
                 
                 <h2>4. Applicant details</h2>
-                <h2>5. Final provisions</h2>                
+                	<label>Applicant Email</label>
+                	<@spring.formInput "formSubmission.customerEmail" />
+				    <br />
+                
+                <h2>5. Final provisions</h2> 
+                	               
                 
                 <button type="submit">Submit</button>               
-            </ol>
+			           
         </div>
+        </form> 
         
         
     </div>
