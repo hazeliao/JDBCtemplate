@@ -42,7 +42,7 @@ public class FormController {
 		
 		FormSubmission formSubmission= new FormSubmission();
 		
-		Form theForm = DemoApplication.database.getForm(id);
+		Form theForm = DemoApplication.formDatabase.getForm(id);
 		model.addAttribute("form", theForm);
 		formSubmission.setFormId(id);
 		model.addAttribute("formSubmission",formSubmission);
@@ -63,7 +63,7 @@ public class FormController {
 		System.out.println("small stuff");
 		System.out.println(formSubmission.toString());
 				
-		DemoApplication.database3.created(formSubmission);
+		DemoApplication.formSubmissionDatabase.created(formSubmission);
 		//model.addAttribute("formSubmissions", DemoApplication.database3.listFormSubmission());
 		
 		return "formsubmission";
