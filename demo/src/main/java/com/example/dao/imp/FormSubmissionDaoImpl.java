@@ -97,9 +97,9 @@ public class FormSubmissionDaoImpl implements FormSubmissionDao{
 
 	@Override
 	public void created(FormSubmission formsubmission) {
-		String SQL = "INSERT INTO FormSubmission (id, formId, serviceLevelId, customerEmail, textTrademark) VALUES (:id, :formId, :serviceLevelId, :customerEmail, :textTrademark)";
-		Map namedParameters = new HashMap();
-		namedParameters.put("id", formsubmission.getId());
+		
+		String SQL = "INSERT INTO FormSubmission (formId, serviceLevelId, customerEmail, textTrademark) VALUES (:id, :formId, :serviceLevelId, :customerEmail, :textTrademark)";
+		Map namedParameters = new HashMap();		
 		namedParameters.put("formId", formsubmission.getFormId());
 		namedParameters.put("serviceLevelId", formsubmission.getServiceLevelId());
 		namedParameters.put("customerEmail", formsubmission.getCustomerEmail());

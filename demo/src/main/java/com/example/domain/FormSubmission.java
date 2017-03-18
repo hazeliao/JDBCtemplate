@@ -74,7 +74,7 @@ public class FormSubmission {
 	@Override
 	public String toString() {
 		return "FormSubmission [id=" + id + ", formId=" + formId + ", serviceLevelId=" + serviceLevelId
-				+ ", customerEmail=" + customerEmail + ", textTrademark=" + textTrademark +  "]";
+				+ ", customerEmail=" + customerEmail + ", textTrademark=" + textTrademark +  "]"+ ",terms = " + terms;
 	}
 
 	

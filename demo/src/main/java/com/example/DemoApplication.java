@@ -78,7 +78,7 @@ public class DemoApplication {
 			//database3.create(10005, 101, 22, "xxx@xx.com", "Blueberry", terms);
 			//FormSubmission fs= new FormSubmission(10005, 101, 22, "xxx@xx.com", "Blueberry", terms);
 			//System.out.println("FormSubmission: " + fs);
-			//database3.created(fs);
+			//formSubmissionDatabase.created(fs);
 			System.out.println("formsubmissions: " + formSubmissionDatabase.listFormSubmission());
 			
 			
