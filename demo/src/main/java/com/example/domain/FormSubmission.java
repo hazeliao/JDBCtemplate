@@ -10,7 +10,7 @@ public class FormSubmission {
 	private String textTrademark;
 	
 	private List<Term> terms;
-	
+	private List<String> termIds;
 	public FormSubmission(){}
 
 	public FormSubmission(long id, long formId, long serviceLevelId, String customerEmail, String textTrademark, List<Term> terms) {
@@ -71,10 +71,18 @@ public class FormSubmission {
 		this.terms = terms;
 	}
 
+	public List<String> getTermIds() {
+		return termIds;
+	}
+
+	public void setTermIds(List<String> termIds) {
+		this.termIds = termIds;
+	}
+
 	@Override
 	public String toString() {
 		return "FormSubmission [id=" + id + ", formId=" + formId + ", serviceLevelId=" + serviceLevelId
-				+ ", customerEmail=" + customerEmail + ", textTrademark=" + textTrademark +  "]"+ ",terms = " + terms;
+				+ ", customerEmail=" + customerEmail + ", textTrademark=" + textTrademark +  "]"+ ",terms = " + termIds;
 	}
 
 	

@@ -68,24 +68,9 @@
                 	<div>	        
 				        <h3>Primary:</h3>
 				     		
-					       	<#assign m1 = terms1Map>
-					       	<#assign keys = m1?keys>
-
-					       	<#list terms1Map?values as termMap1>
-					       		<p>Class ${keys[termMap1?index]}</p>					       									
-					       		<@spring.formCheckboxes "formSubmission.terms" termMap1 "<br/>"  />
-					       	</#list>
+					       	<@spring.formCheckboxes "formSubmission.termIds" termMap1 "<br>" />
 					       	
-					       					       	
-				       	<h3>Secondary:</h3>
-				       		<#assign m2 = terms2Map>
-					       	<#assign keys = m2?keys>
-
-					       	<#list terms2Map?values as termMap2>
-					       		<p>Class ${keys[termMap2?index]}</p>					       									
-					       		<@spring.formCheckboxes "formSubmission.terms" termMap2 "<br/>" />
-					       	</#list>
-					       	
+					   
 					    <p>Did not find what you were looking for?</p>
 					    <textarea></textarea>
 					      

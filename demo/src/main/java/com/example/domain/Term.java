@@ -54,7 +54,7 @@ public class Term {
 
 	@Override
 	public String toString() {
-		return "Term [id=" + id + ", termName=" + name + ", termClass=" + termClass + "]";
+		return "Term:" + name ;
 	}
 	
 	
