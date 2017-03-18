@@ -105,22 +105,9 @@
                 <h2>3. Service level (See further instructions and comments, new window)</h2>
                 	<br />
                 	<a href="https://www.reggster.com/service-levels.html">Compare plans (new window)</a>
-                	<ul>
-						<#list form.serviceLevels as serviceLevel>
-			        	
-            			<li>${serviceLevel.name}    <br /> 							
-			        
-						 <input id=${serviceLevel.id} type="radio" name="serviceLevel"  value=${serviceLevel.id}/>
-					       	${serviceLevel.id} Attorney free ${serviceLevel.price}
-							
-						    </li>
-				       	
-				       	</#list> 
-                	</ul>
-						        
-						       
-						
-                
+                	<br />						
+			        	<@spring.formRadioButtons "formSubmission.serviceLevelId" serviceLevelMap "<br>" />            		
+				       
                 <h2>4. Applicant details</h2>
                 	<label>Applicant Email</label>
                 	<@spring.formInput "formSubmission.customerEmail" />
