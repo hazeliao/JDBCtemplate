@@ -66,13 +66,28 @@
                 <h2>2. Goods and services</h2>
                 	<p>The goods and services named in the application determine the extent of your rights. Select the goods and services for your trademark application below. Government fee is determined only by the number of classes (within a class you can choose as many items as you like). Once the application is submitted, it is not possible to add new goods and services. The government fee for the application includes one class. First additional class is 50 EUR and thereafter each class adds 150 EUR to government fees. The number of classes does not affect attorney fees (see below). If you want to protect your trademark for goods and services not found here, please select advanced or premium service level below.</p>                              
                 	<div>	        
-				        <h3>Primary:</h3>
-				     		
-					       	<@spring.formCheckboxes "formSubmission.termIds" termMap1 "<br>" />
-					       	
-					   
+				        <h3>Primary:</h3>				        
+				     		<#assign m1 = terms1Map>
+					       	<#assign keys = m1?keys>
+					       	<#assign values = m1?values>
+
+					       	<#list values as termMap1>					       		
+					       		<p>Class ${keys[termMap1?index]}</p>					       									
+					       		<@spring.formCheckboxes "formSubmission.termIds" termMap1 "<br>" />
+					       	</#list>
+					       						       	
+					    <h3>Secondary:</h3>
+				       		<#assign m2 = terms2Map>
+					       	<#assign keys = m2?keys>
+
+					       	<#list terms2Map?values as termMap2>
+					       		<p>Class ${keys[termMap2?index]}</p>
+					       		<@spring.formCheckboxes "formSubmission.termIds" termMap2 "<br>" />
+					       		
+					       	</#list>
 					    <p>Did not find what you were looking for?</p>
-					    <textarea></textarea>
+					    
+					    <textarea></textarea>					    				   
 					      
 	               	</div>	  
 	                         

@@ -1,14 +1,18 @@
 package com.example.dao.imp;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import com.example.dao.FormSubmissionDao;
@@ -16,6 +20,8 @@ import com.example.domain.FormSubmission;
 import com.example.domain.Term;
 import com.example.mapper.FormSubmissionMapper;
 import com.example.mapper.TermMapper;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 
 @Component
 public class FormSubmissionDaoImpl implements FormSubmissionDao{
@@ -53,7 +59,7 @@ public class FormSubmissionDaoImpl implements FormSubmissionDao{
 		SQL = "SELECT t.id, t.name, t.termClassId"
 			+" FROM Term t JOIN FormSubmissionTerm ft ON ( t.id = ft.termId AND ft.formSubmissionId  = :id) "
 			+" ORDER BY t.termClassId, t.name; ";
-		//formSubmission.setTerms((ArrayList<Term>) namedParameterJdbcTemplate.query(SQL, namedParametersource, new TermMapper()));
+		formSubmission.setTerms((ArrayList<Term>) namedParameterJdbcTemplate.query(SQL, namedParametersource, new TermMapper()));
 		return formSubmission;
 	}
 
@@ -96,7 +102,7 @@ public class FormSubmissionDaoImpl implements FormSubmissionDao{
 	}
 
 	@Override
-	public void created(FormSubmission formsubmission) {
+	public void createFormSubmission(FormSubmission formsubmission) {
 		
 		String SQL = "INSERT INTO FormSubmission (id, formId, serviceLevelId, customerEmail, textTrademark) VALUES (:id, :formId, :serviceLevelId, :customerEmail, :textTrademark)";
 		Map namedParameters = new HashMap();
@@ -106,12 +112,22 @@ public class FormSubmissionDaoImpl implements FormSubmissionDao{
 		namedParameters.put("customerEmail", formsubmission.getCustomerEmail());
 		namedParameters.put("textTrademark", formsubmission.getTextTrademark());
 		namedParameterJdbcTemplate.update(SQL, namedParameters);
-		SQL =  "INSERT INTO FormSubmissionTerm (formSubmissionId, termId) VALUES (:formSubmissionId, :termId)";
+	}
+
+	@Override
+	public void createFormSubmissionTerm(FormSubmission formsubmission) {
+		// TODO Auto-generated method stub
+
+		String SQL =  "INSERT INTO FormSubmissionTerm (formSubmissionId, termId) VALUES (:formSubmissionId, :termId)";
+		
 		for (Term term : formsubmission.getTerms()){
+			Map namedParameters = new HashMap();
 			namedParameters.put("formSubmissionId", formsubmission.getId());
 			namedParameters.put("termId", term.getId());
+			namedParameterJdbcTemplate.update(SQL, namedParameters);
 		}		
-		namedParameterJdbcTemplate.update(SQL, namedParameters);
+		
+		
 	}
 	
 	

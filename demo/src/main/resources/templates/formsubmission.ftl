@@ -3,7 +3,6 @@
 	<h3>formSubmissions</h3>			
 			<ul>
 				        	
-				        	<#list formSubmissions as formSubmission>
 				        	
 				       		<li>formSubmission  <br />
 					       		id: ${formSubmission.id}	 <br />			       		
@@ -19,7 +18,7 @@
 						    </ul> 	
 					       	</li>
 					       	
-					       	</#list> 
+					       
 				       	</ul>
 				       	
 				       	

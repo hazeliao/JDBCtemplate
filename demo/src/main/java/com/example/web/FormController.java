@@ -53,7 +53,7 @@ public class FormController {
 		model.addAttribute("form", form);
 		formSubmission.setFormId(id);
 		model.addAttribute("formSubmission",formSubmission);
-		
+		/*
 		List<Term> terms1 = form.getTerms1();
 		Map terms1Map = new HashMap();	
 		for (int b = 0 ; b < terms1.size(); b++){
@@ -64,7 +64,7 @@ public class FormController {
 		}
 		model.addAttribute("termMap1", terms1Map);
 		
-		/*	
+		*/
 		List<Term> terms1 = form.getTerms1();
 		Map terms1Map = new HashMap();		
 		for (int a = 0; a < terms1.size(); a++)
@@ -74,8 +74,8 @@ public class FormController {
 			boolean foundAtleastOneClassIdMatch = false;
 			for (int b = 0 ; b < terms1.size(); b++){
 				if (x == (int)terms1.get(b).getTermClass().getTermClassId()){
-					newMap.put((""+terms1.get(b).getId()), terms1.get(b));
-					//newMap.put((""+terms1.get(b).getId()), terms1.get(b).getName()+", " +terms1.get(b).getTermClass().getTermClassId());
+					//newMap.put((""+terms1.get(b).getId()), terms1.get(b));
+					newMap.put((""+terms1.get(b).getId()), terms1.get(b).getName());
 					foundAtleastOneClassIdMatch = true;
 				}
 			}
@@ -86,8 +86,8 @@ public class FormController {
 		Map<String, LinkedHashMap> map = new TreeMap<String, LinkedHashMap>(terms1Map);		
 		System.out.println(map);
 		model.addAttribute("terms1Map", map);
-		*/		
-		/*
+			
+		
 		List<Term> terms2 = form.getTerms2();
 		Map terms2Map = new HashMap();		
 		for (int a = 0; a < terms2.size(); a++)
@@ -108,7 +108,7 @@ public class FormController {
 		Map<String, LinkedHashMap> map2 = new TreeMap<String, LinkedHashMap>(terms2Map);		
 		System.out.println(map2);
 		model.addAttribute("terms2Map", map2);
-			*/	
+				
 		List<ServiceLevel> serviceLevels= form.getServiceLevels();
 		System.out.println(serviceLevels);
 		Map serviceLevelMap = new LinkedHashMap();
@@ -124,7 +124,7 @@ public class FormController {
 	}
 	 	
 	@RequestMapping(value="/formSubmission", method = RequestMethod.POST)
-	public String FormSubmission(@ModelAttribute("formSubmission") FormSubmission formSubmission,BindingResult bindingResult){
+	public String FormSubmission(@ModelAttribute("formSubmission") FormSubmission formSubmission,BindingResult bindingResult, Model model){
 		System.out.println("small stuff");
 		System.out.println(formSubmission.toString());
 		Form form =  DemoApplication.formDatabase.getForm((int) formSubmission.getFormId());
@@ -153,9 +153,15 @@ public class FormController {
 		formSubmission.setTerms(parsedTerms);
 		System.out.println(parsedTerms);
 				
-		DemoApplication.formSubmissionDatabase.created(formSubmission);
-		//model.addAttribute("formSubmissions", DemoApplication.database3.listFormSubmission());
+		DemoApplication.formSubmissionDatabase.createFormSubmission(formSubmission);
 		
+		//model.addAttribute("formSubmissions", DemoApplication.database3.listFormSubmission());
+//		System.out.println("formsubmissions: " + DemoApplication.formSubmissionDatabase.listFormSubmission());
+		List<FormSubmission> ls = DemoApplication.formSubmissionDatabase.listFormSubmission();
+		formSubmission.setId(ls.get(ls.size()-1).getId());
+		
+		DemoApplication.formSubmissionDatabase.createFormSubmissionTerm(formSubmission);
+		model.addAttribute("formSubmission", DemoApplication.formSubmissionDatabase.getFormSubmission((int)formSubmission.getId()));
 		return "formsubmission";
 	}
 	    

@@ -9,7 +9,9 @@ public interface FormSubmissionDao {
 	
 	void create(Integer id, Integer formId, Integer serviceLevelId, String customerEmail, String textTrademark, List<Term> terms) ;
 	
-	void created(FormSubmission formsubmission);
+	void createFormSubmission(FormSubmission formsubmission);
+	
+	void createFormSubmissionTerm(FormSubmission formsubmission);
 	
 	FormSubmission getFormSubmission(Integer id);
 	
