@@ -1,12 +1,17 @@
 package com.example.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.domain.Form;
+import com.example.domain.ServiceLevel;
+import com.example.domain.Term;
 
 public interface FormDao {
 	
-	void create(Integer id, String name);
+	void createForm(Form form);
+	
+	void createFormTerm(Form form);
 	
 	Form getForm(Integer id);
 	

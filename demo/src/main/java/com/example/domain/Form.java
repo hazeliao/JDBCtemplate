@@ -24,6 +24,15 @@ public class Form {
 		this.terms2 = null;
 		this.serviceLevels = null;
 	}
+	
+	public Form(long id, String name, ArrayList<Term> terms1, ArrayList<Term> terms2) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.terms1 = terms1;
+		this.terms2 = terms2;
+		this.serviceLevels = null;
+	}
 
 	public long getId() {
 		return id;

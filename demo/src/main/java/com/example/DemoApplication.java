@@ -10,6 +10,7 @@ import com.example.dao.imp.FormDaoImpl;
 import com.example.dao.imp.FormSubmissionDaoImpl;
 import com.example.dao.imp.IndustryFieldImpl;
 import com.example.dao.imp.ServiceLevelDaoImpl;
+import com.example.dao.imp.TermDaoImpl;
 import com.example.domain.Form;
 import com.example.domain.FormSubmission;
 import com.example.domain.ServiceLevel;
@@ -48,6 +49,10 @@ public class DemoApplication {
 	public static FormSubmissionDaoImpl formSubmissionDatabase = new FormSubmissionDaoImpl();
 	
 	public static IndustryFieldImpl industryFieldDatabase = new IndustryFieldImpl();
+	
+	public static TermDaoImpl termDatabase = new TermDaoImpl();
+	
+	
 	@Bean
 	public CommandLineRunner demo(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
 		return(args) -> {
@@ -58,6 +63,7 @@ public class DemoApplication {
 			industryFieldDatabase.setNamedParameterJdbcTemplate(namedParameterJdbcTemplate);
 			serviceLevelDatabase.setNamedParameterJdbcTemplate(namedParameterJdbcTemplate);
 			formSubmissionDatabase.setNamedParameterJdbcTemplate(namedParameterJdbcTemplate);
+			termDatabase.setNamedParameterJdbcTemplate(namedParameterJdbcTemplate);
 			
 			List<ServiceLevel> serviceLevels = serviceLevelDatabase.listServiceLevels();
 			
@@ -110,8 +116,29 @@ public class DemoApplication {
 			Collections.sort(secondaryTerms, new TermClassComparator());
 			
 			*/
-
-					
+			
+			//test database create form;			
+			
+			/*
+			ArrayList<Term> terms1 = new ArrayList<Term>();
+			terms1.add(termDatabase.getTerm(1001));
+			terms1.add(termDatabase.getTerm(1002));
+			terms1.add(termDatabase.getTerm(1003));
+			terms1.add(termDatabase.getTerm(1004));
+			
+			ArrayList<Term> terms2 = new ArrayList<Term>();
+			terms2.add(termDatabase.getTerm(1005));
+			terms2.add(termDatabase.getTerm(1006));
+			terms2.add(termDatabase.getTerm(1007));
+			terms2.add(termDatabase.getTerm(1008));
+			terms2.add(termDatabase.getTerm(1009));
+			
+			Form newform = new Form(168, "test0000123test123", terms1, terms2);
+			formDatabase.createForm(newform);	
+			formDatabase.createFormTerm(newform);
+			
+			List<Term> terms1111= termDatabase.listTerms();
+			System.out.println(terms1111);*/
 
 		};
 	}

@@ -29,14 +29,37 @@ public class FormDaoImpl implements FormDao{
 	 }
 	
 	@Override
-	public void create(Integer id, String name) {
+	public void createForm(Form form) {
 	      String SQL = "INSERT INTO Form (id, name) VALUES (:id, :name)";
 	      Map namedParameters = new HashMap();  
-	      namedParameters.put("id", id);
-	      namedParameters.put("name", name); 
+	      namedParameters.put("id", form.getId());
+	      namedParameters.put("name", form.getName()); 
 	      namedParameterJdbcTemplate.update(SQL, namedParameters);
-	      System.out.println("Created Form Id = " + id + " Name = " + name);
+	      System.out.println("Created Form Id = " + form.getId() + " Name = " + form.getName());
 	}
+	
+
+	@Override
+	public void createFormTerm(Form form) {
+		String SQL = "INSERT INTO FormTerm (formId, termId, relevance) VALUES (:formId, :termId, :relevance)";
+		
+		for (Term term : form.getTerms1()){
+			Map namedParameters = new HashMap();
+			namedParameters.put("formId", form.getId());
+			namedParameters.put("termId", term.getId());
+			namedParameters.put("relevance", 1);
+			namedParameterJdbcTemplate.update(SQL, namedParameters);			
+		}
+		
+		for (Term term : form.getTerms2()){
+			Map namedParameters = new HashMap();
+			namedParameters.put("formId", form.getId());
+			namedParameters.put("termId", term.getId());
+			namedParameters.put("relevance", 2);
+			namedParameterJdbcTemplate.update(SQL, namedParameters);			
+		}
+	}
+	
 
 	@Override
 	public Form getForm(Integer id){
@@ -68,7 +91,7 @@ public class FormDaoImpl implements FormDao{
 		
 		SQL="SELECT * FROM ServiceLevel;";
 		form.setServiceLevels((ArrayList<ServiceLevel>) namedParameterJdbcTemplate.query(SQL, new ServiceLevelMapper()));
-				return form;
+		return form;
 	}
 
 	@Override
@@ -95,6 +118,7 @@ public class FormDaoImpl implements FormDao{
 		namedParameterJdbcTemplate.update(SQL, namedParameters);
 		System.out.println("Updated Form with ID = " + id + " Name = " + name);
 	}
+
 
 
 }
