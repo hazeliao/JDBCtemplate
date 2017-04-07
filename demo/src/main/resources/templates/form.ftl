@@ -105,7 +105,7 @@
                 <h2>5. Final provisions</h2> 
                 	               
                 
-                <button type="submit">Submit</button>               
+                <button type="submit">Continue</button>               
 			           
         </div>
         </form> 

@@ -39,9 +39,15 @@ public class FormController {
 //	
 //		return "index";
 //	}
-
+	
+	private FormSubmission confirmation = null;
+	
 	@RequestMapping(value="/form/{id}", method = RequestMethod.GET)
 	public String formlist(@PathVariable("id") int id, Model model){
+		
+		System.out.println("FEFEFE");
+		if ( confirmation != null )
+			System.out.println(confirmation.toString());
 		
 		FormSubmission formSubmission= new FormSubmission();
 		
@@ -115,12 +121,16 @@ public class FormController {
 		}
 		model.addAttribute("serviceLevelMap", serviceLevelMap);
 	    
+		//model.addAttribute("theMessage", new String("DingusDongus"));
 		// model.addAttribute("serviceLevels", DemoApplication.database2.listServiceLevels());
 		return "form";
 	}
 	 	
 	@RequestMapping(value="/formSubmission", method = RequestMethod.POST)
 	public String FormSubmission(@ModelAttribute("formSubmission") FormSubmission formSubmission,BindingResult bindingResult, Model model){
+		confirmation = new FormSubmission();
+		
+		
 		System.out.println("small stuff");
 		System.out.println(formSubmission.toString());
 		Form form =  DemoApplication.formDatabase.getForm((int) formSubmission.getFormId());
@@ -148,7 +158,23 @@ public class FormController {
 		}
 		formSubmission.setTerms(parsedTerms);
 		System.out.println(parsedTerms);
-				
+		
+		System.out.println("AASDF");
+		confirmation = formSubmission;
+		System.out.println(confirmation.toString());
+		
+		long serviceLevelId = formSubmission.getServiceLevelId();
+		List<ServiceLevel> serviceLevels= form.getServiceLevels();
+		
+		ServiceLevel see= new ServiceLevel();
+		for (ServiceLevel sl:form.getServiceLevels()){
+			if( sl.getId() == serviceLevelId){
+				see=sl;
+			}
+		}
+		model.addAttribute("level", see);
+		model.addAttribute("form",form);
+		/*
 		DemoApplication.formSubmissionDatabase.createFormSubmission(formSubmission);
 		
 		//model.addAttribute("formSubmissions", DemoApplication.database3.listFormSubmission());
@@ -158,7 +184,29 @@ public class FormController {
 		
 		DemoApplication.formSubmissionDatabase.createFormSubmissionTerm(formSubmission);
 		model.addAttribute("formSubmission", DemoApplication.formSubmissionDatabase.getFormSubmission((int)formSubmission.getId()));
+		*/
+		model.addAttribute("formSubmission", formSubmission);
+		
 		return "formsubmission";
 	}
+	
+	@RequestMapping(value="/confirmation", method = RequestMethod.POST)
+	public String submissionConfirmation(Model model){
+		
+		DemoApplication.formSubmissionDatabase.createFormSubmission(confirmation);
+		
+		//model.addAttribute("formSubmissions", DemoApplication.database3.listFormSubmission());
+//		System.out.println("formsubmissions: " + DemoApplication.formSubmissionDatabase.listFormSubmission());
+		List<FormSubmission> ls = DemoApplication.formSubmissionDatabase.listFormSubmission();
+		confirmation.setId(ls.get(ls.size()-1).getId());
+		
+		DemoApplication.formSubmissionDatabase.createFormSubmissionTerm(confirmation);
+		//model.addAttribute("formSubmission", DemoApplication.formSubmissionDatabase.getFormSubmission((int)confirmation.getId()));
+		
+		return "confirmed";
+	}
+	
+	
+	
 	    
 }
