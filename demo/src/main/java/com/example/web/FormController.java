@@ -203,7 +203,7 @@ public class FormController {
 		DemoApplication.formSubmissionDatabase.createFormSubmissionTerm(confirmation);
 		//model.addAttribute("formSubmission", DemoApplication.formSubmissionDatabase.getFormSubmission((int)confirmation.getId()));
 		
-		return "confirmed";
+		return "formSubmissionConfirmed";
 	}
 	
 	

@@ -68,7 +68,7 @@ public class DemoApplication {
 			List<ServiceLevel> serviceLevels = serviceLevelDatabase.listServiceLevels();
 			
 			Form form = formDatabase.getForm(101);
-			ArrayList<ServiceLevel> sl = form.getServiceLevels();
+			List<ServiceLevel> sl = form.getServiceLevels();
 			System.out.println("muumi: " + form.getTerms1().toString());
 			System.out.println("muumi.size(): " + serviceLevels.size());
 			System.out.println("muumi: " + sl.toString());

@@ -1,23 +1,27 @@
 package com.example.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Form {
 	
 	private long id;
 	private String name;
 	
-	private IndustryField industryField;
+	private List<IndustryField> industryFields;
+	private List<String> industryFieldIds;
 	//@OneToMany (cascade = CascadeType.ALL, mappedBy = "terms1")
-	private ArrayList<Term> terms1;
+	private List<Term> terms1;
+	private List<String> terms1Ids;
 	
 	//@OneToMany (cascade = CascadeType.ALL, mappedBy = "terms2")
-	private ArrayList<Term> terms2;
+	private List<Term> terms2;
+	private List<String> terms2Ids;
 	
-	private  ArrayList<ServiceLevel> serviceLevels;
+	private  List<ServiceLevel> serviceLevels;
 
 	public Form(){}
-
+/*
 	public Form(long id, String name) {
 		super();
 		this.id = id;
@@ -27,12 +31,12 @@ public class Form {
 		this.terms2 = null;
 		this.serviceLevels = null;
 	}
-	
-	public Form(long id, String name, IndustryField industryField, ArrayList<Term> terms1, ArrayList<Term> terms2) {
+	*/
+	public Form(long id, String name, List<IndustryField> industryFields, List<Term> terms1, List<Term> terms2) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.industryField = industryField;
+		this.industryFields = industryFields;
 		this.terms1 = terms1;
 		this.terms2 = terms2;
 		this.serviceLevels = null;
@@ -54,42 +58,61 @@ public class Form {
 		this.name = name;
 	}
 	
-	public IndustryField getIndustryField() {
-		return industryField;
+	public List<IndustryField> getIndustryFields() {
+		return industryFields;
 	}
-
-	public void setIndustryField(IndustryField industryField) {
-		this.industryField = industryField;
+	public void setIndustryFields(List<IndustryField> industryFields) {
+		this.industryFields = industryFields;
 	}
-
-	public ArrayList<Term> getTerms1() {
+	public List<String> getIndustryFieldIds() {
+		return industryFieldIds;
+	}
+	public void setIndustryFieldIds(List<String> industryFieldIds) {
+		this.industryFieldIds = industryFieldIds;
+	}
+	public List<Term> getTerms1() {
 		return terms1;
 	}
 
-	public void setTerms1(ArrayList<Term> terms1) {
+	public void setTerms1(List<Term> terms1) {
 		this.terms1 = terms1;
 	}
 
-	public ArrayList<Term> getTerms2() {
+	public List<Term> getTerms2() {
 		return terms2;
 	}
 
-	public void setTerms2(ArrayList<Term> terms2) {
+	public void setTerms2(List<Term> terms2) {
 		this.terms2 = terms2;
 	}
 	
-	public ArrayList<ServiceLevel> getServiceLevels() {
+	public List<ServiceLevel> getServiceLevels() {
 		return serviceLevels;
 	}
 
-	public void setServiceLevels(ArrayList<ServiceLevel> serviceLevels) {
-		this.serviceLevels = serviceLevels;
+	public void setServiceLevels(List<ServiceLevel> list) {
+		this.serviceLevels = list;
 	}
-
+	
+	public List<String> getTerms1Ids() {
+		return terms1Ids;
+	}
+	public void setTerms1Ids(List<String> terms1Ids) {
+		this.terms1Ids = terms1Ids;
+	}
+	public List<String> getTerms2Ids() {
+		return terms2Ids;
+	}
+	public void setTerms2Ids(List<String> terms2Ids) {
+		this.terms2Ids = terms2Ids;
+	}
 	@Override
 	public String toString() {
-		return "Form [id=" + id + ", name=" + name + "]";
+		return "Form [id=" + id + ", name=" + name + ", industryFields=" + industryFields + ", terms1=" + terms1
+				+ ", terms2=" + terms2 + "]";
 	}
+
+	
 	
 	
 
