@@ -74,7 +74,7 @@
 			//
 			//	Block enter key to submit form because search functionality is triggered with it!
 			//
-			var formX = document.querySelector("#formConfirmation");
+			var formX = document.querySelector("#form");
 			var prim = document.querySelector("#primaryTermsInput");
 			var sec = document.querySelector("#secondaryTermsInput");
 			formX.addEventListener("keypress", function(event) {
@@ -103,6 +103,34 @@
 		//		
 		
 		//
+		//	Deletes the HTML element and restores the checkbox choice.
+		//
+		function killPrimaryTerm(element, checkboxId)
+		{
+
+			console.log("xxsxs checkboxId: " + checkboxId.id);
+			console.log("asdfs checkboxId: " + checkboxId.checked);
+			console.log("xx checkboxId: ", checkboxId);
+			document.getElementById(checkboxId.id).checked = false;
+			//removeElem('label','for',checkboxId.id);
+	
+			console.log("element to kill:", element);
+			//var	xxx = element.nextSibling;
+//			element.nextSibling.removeChild(element.nextSibling.firstChild);
+			element.parentNode.removeChild(element.nextSibling);
+			console.log("434next name:", element.nextSibling.nodeName);
+			if(element.nextSibling.nodeName=='BR')
+				element.parentNode.removeChild(element.nextSibling);
+			
+			element.parentNode.removeChild(element);
+			
+	
+//			var baseElement = document.getElementById(checkboxId).checked = false;
+			
+			//document.getElementById(checkboxId).checked = false;
+		}
+		
+		//
 		//	Finds the choices the user made from checkboxes.
 		//
 		function getChoicesAsStringArray( dataObject ) //dataObject.checkboxes & dataObject.labels
@@ -114,7 +142,14 @@
 				{
 					//NOTE: ( dataObject.checkboxes[i].value ) contains the chosen value results like 203, 213, etc.
 					//console.log("val:" + dataObject.checkboxes[i].value);
-					results.push( dataObject.labels[i].outerHTML  );
+					//The copied HTML needs to be shown instead of hidden on the main page for the user.
+					var hiddenLabel = dataObject.labels[i].outerHTML;
+					var shownLabel = hiddenLabel.replace("display: none;", "display:inline-block;");
+//					console.log("dataObject.checkboxes[i].id: " + dataObject.checkboxes[i].id);
+					var everything = "<button type='button' onclick='killPrimaryTerm(this,";
+					everything += "" + dataObject.checkboxes[i].id+ ");";
+					everything += "'>Remove</button>";
+					results.push( everything + shownLabel + "<br/>" );
 				}
 			}
 			return results;
@@ -135,13 +170,23 @@
 			if ( popupId == 1 )
 			{
 				resultsStringArray = getChoicesAsStringArray( primaryTermsPopup ); //NOTE: Regexp removes commas.
-				primaryTermsResultsDiv.innerHTML += "<br/>" + resultsStringArray.toString().replace(/\,/g,"<br/>") + "";
+				var dataAsString = "";
+				for ( var i = 0; i < resultsStringArray.length; i++ )
+				{
+					dataAsString += resultsStringArray[i];
+				}
+				primaryTermsResultsDiv.innerHTML = "<br/>" + dataAsString;
 			}
 			
 			if ( popupId == 2 )
 			{
 				resultsStringArray = getChoicesAsStringArray( secondaryTermsPopup ); //NOTE: Regexp removes commas.
-				secondaryTermsResultsDiv.innerHTML += "<br/>" + resultsStringArray.toString().replace(/\,/g,"<br/>") + "";
+				var dataAsString = "";
+				for ( var i = 0; i < resultsStringArray.length; i++ )
+				{
+					dataAsString += resultsStringArray[i];
+				}
+				secondaryTermsResultsDiv.innerHTML = "<br/>" + dataAsString;
 			}
 			closePopup(popupId);
 		}
@@ -248,9 +293,19 @@
 		{			
 			for ( var i = 0; i < targetPopup.checkboxes.length; i++ )
 			{
-				targetPopup.checkboxes[i].checked = false;
-				showSpecial(targetPopup.checkboxes[i]);
-				showSpecial(targetPopup.labels[i]);
+				//targetPopup.checkboxes[i].checked = false;
+				if ( targetPopup.checkboxes[i].checked == true)
+				{
+					hide(targetPopup.labels[i]);
+					hide(targetPopup.checkboxes[i]);
+					var brsToHide = document.getElementById(targetPopup.divNameFg).getElementsByTagName('br');
+					hide(brsToHide[i]);
+				}
+				else
+				{
+					showSpecial(targetPopup.labels[i]);
+					showSpecial(targetPopup.checkboxes[i]);
+				}
 			}
 			
 			var numberOfBRsToHide = 0;
@@ -261,9 +316,12 @@
 				var comparisonText = targetPopup.labels[i].innerHTML;
 				if ( comparisonText.toUpperCase().indexOf( searchTerm.toUpperCase() ) != -1 )
 				{
-					showSpecial(targetPopup.checkboxes[i]);
-					showSpecial(targetPopup.labels[i]);
-					numToShow++;
+					if ( targetPopup.checkboxes[i].checked == false)
+					{
+						showSpecial(targetPopup.checkboxes[i]);
+						showSpecial(targetPopup.labels[i]);
+						numToShow++;
+					}
 				} else {
 					numberOfBRsToHide++;
 					hide(targetPopup.checkboxes[i]);
@@ -293,10 +351,8 @@
     <div>
           
         <h1>New Form</h1>
-        <form id="formConfirmation" action="/formConfim" method="post" >      
-        
-        <input type="text" id="form.primaryTerms">
-        <input type="text" id="form.secondaryTerms">
+        <form id="form" action="/formConfirm" method="post" >      
+
         <h3>Form Name:</h3>
         <@spring.formInput "form.name" />		
 		<br />		
@@ -306,7 +362,7 @@
         <div id="industryFieldPopup" class="popup">
         	<div class="popupBackground" onclick="closePopup(0);"></div>
  			<div id="industryFieldPopupFg" class="popupForeground">
-					<@spring.formCheckboxes "form.industryField" industryFieldMap "<br>"/>
+					<@spring.formCheckboxes "form.industryFieldIds" industryFieldMap "<br>"/>
 					<button type="button" onclick="confirmPopup(0);"> OK </button>		        	
      		</div>
         </div>
@@ -329,7 +385,7 @@
         <div id="primaryTermsPopup" class="popup">
         	<div id="popupBackgroundTest" class="popupBackground" onclick="closePopup(1);"></div>
  			<div id="primaryTermsPopupFg" class="popupForeground" >
-					<@spring.formCheckboxes "form.terms1" termsMap " <br> " />
+					<@spring.formCheckboxes "form.terms1Ids" termsMap "<br>" />
 					<button type="button" onclick="confirmPopup(1);"> OK </button>		        	
      		</div>
         </div>
@@ -348,7 +404,7 @@
 			<div id="secondaryTermsPopup" class="popup">
 				<div class="popupBackground" onclick="closePopup(2);"></div>
  				<div id="secondaryTermsPopupFg" class="popupForeground">
-					<@spring.formCheckboxes "form.terms2" termsMap " <br> " />
+					<@spring.formCheckboxes "form.terms2Ids" termsMap " <br> " />
 					<button type="button" onclick="confirmPopup(2);"> OK </button>		        	
      			</div>
         	</div>			
