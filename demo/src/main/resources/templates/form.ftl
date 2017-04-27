@@ -7,7 +7,10 @@
     <link rel="stylesheet" type="text/css" href="../css/universal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito">
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat">  
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat">
+    <script src="../js/jquery-3.2.1.min.js"></script>  
+    <script src="../js/tm.js"></script>
+    
 </head>
 
 <body>
@@ -46,23 +49,31 @@
         <div>
             <h2>1. Trademark(s) details</h2>(See further instructions and comments, new window)
                 	<p>If you want to file two trademarks, please note that the goods and services will be the same for both marks. If you want to file another trademark for other goods and services, please fill a separate form for the second trademark.</p>
-                	    <div>    		
+                	<div id="tm">    
+                	    <div id="tmdetailtype" class="tmdetailtype">    		
 						    <br />
-						    <input type="checkbox" name="checkbox-0" value="1234" />Word (e.g. name of the product)
+						    <input type="radio" name="tmtype" value="word" id="tmword" />Word (e.g. name of the product)
 						    <br />
-						    <input type="checkbox" name="checkbox-1" value="235"/>Figurative (e.g. logo or icon, can contain words)
+						    <input type="radio" name="tmtype" value="fig" id="tmfig" />Figurative (e.g. logo or icon, can contain words)
 						    <br />
-						    <input type="checkbox" name="checkbox-2" value="6" />Other (3d, sound, color, position, movement)
+						    <input type="radio" name="tmtype" value="other" id="tmsound" />Other (3d, sound, color, position, movement)
 						    <br />
-						    <label>Words in the trademark</label>	
-						    <@spring.formInput "formSubmission.textTrademark"  />
-						    <br />
-						    <label>Other than word marks - upload file(PDF,JPG,PNG)</label>
-						    <br />
-						    <input type="file" name="file" id="tradeMarkeFile"/>
-						    <br />
-					    </div>               
-                
+						    <div id="tmtext">
+						    	<label>Words in the trademark</label>	
+						    	<@spring.formInput "formSubmission.textTrademark"  />
+						    </div>
+						    
+						    <div id="tmfile" >
+						    	<label>Other than word marks - upload file(PDF,JPG,PNG)</label>
+						    	<br />
+						    	<input type="file" name="file" id="tradeMarkeFile"/>
+						    </div>
+						    
+					    </div>
+					</div>  
+					<br/>                 
+                		<button id="addtm" type="button">add trademark type</button>
+                    
                 <h2>2. Goods and services</h2>
                 	<p>The goods and services named in the application determine the extent of your rights. Select the goods and services for your trademark application below. Government fee is determined only by the number of classes (within a class you can choose as many items as you like). Once the application is submitted, it is not possible to add new goods and services. The government fee for the application includes one class. First additional class is 50 EUR and thereafter each class adds 150 EUR to government fees. The number of classes does not affect attorney fees (see below). If you want to protect your trademark for goods and services not found here, please select advanced or premium service level below.</p>                              
                 	<div>	        
@@ -105,7 +116,7 @@
                 <h2>5. Final provisions</h2> 
                 	               
                 
-                <button type="submit">Continue</button>               
+                <button type="submit">Submit</button>               
 			           
         </div>
         </form> 

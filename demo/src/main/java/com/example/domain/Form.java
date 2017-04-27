@@ -6,6 +6,8 @@ public class Form {
 	
 	private long id;
 	private String name;
+	
+	private IndustryField industryField;
 	//@OneToMany (cascade = CascadeType.ALL, mappedBy = "terms1")
 	private ArrayList<Term> terms1;
 	
@@ -20,15 +22,17 @@ public class Form {
 		super();
 		this.id = id;
 		this.name = name;
+		this.industryField =null;
 		this.terms1 = null;
 		this.terms2 = null;
 		this.serviceLevels = null;
 	}
 	
-	public Form(long id, String name, ArrayList<Term> terms1, ArrayList<Term> terms2) {
+	public Form(long id, String name, IndustryField industryField, ArrayList<Term> terms1, ArrayList<Term> terms2) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.industryField = industryField;
 		this.terms1 = terms1;
 		this.terms2 = terms2;
 		this.serviceLevels = null;
@@ -48,6 +52,14 @@ public class Form {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public IndustryField getIndustryField() {
+		return industryField;
+	}
+
+	public void setIndustryField(IndustryField industryField) {
+		this.industryField = industryField;
 	}
 
 	public ArrayList<Term> getTerms1() {

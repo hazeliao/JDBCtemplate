@@ -184,11 +184,11 @@ p {
     font-weight: 500;
 }
 
-.popup {
+#popup {
   display: none;
 }
 
-.popupBackground{
+#popup-bg{
   position:fixed;
   top: 0;
   background: black;
@@ -197,20 +197,24 @@ p {
   opacity: .5;
 }
 
-.popupForeground{
+#popup-fg{
   max-width: 70em;
   background: #ddd;
-  margin: 5vh;
+  margin: 0 auto;
   padding: 2em;
   z-index: 1;
   position: absolute;
   left: 0;
   right: 0;
-  top: 15vh;
   border-radius: 1em;
 }
 
-.popup {
+#login {
+  float: left;
+  margin: -4em 4em;
+}
+
+#popup {
   
   input, label {
     display: block;
