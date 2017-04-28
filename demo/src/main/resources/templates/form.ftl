@@ -10,6 +10,14 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat">
     <script src="../js/jquery-3.2.1.min.js"></script>  
     <script src="../js/tm.js"></script>
+    <style>
+    
+    label 
+    {
+    	 pointer-events: none !important;
+    };
+    
+    </style>
     
 </head>
 
