@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import com.example.dao.FormDao;
 import com.example.domain.Form;
-import com.example.domain.IndustryField;
 import com.example.domain.ServiceLevel;
 import com.example.domain.Term;
 import com.example.mapper.FormMapper;
