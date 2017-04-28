@@ -164,7 +164,13 @@
 			if ( popupId === 0 )
 			{
 				resultsStringArray = getChoicesAsStringArray( industryFieldPopup ); //NOTE: Regexp removes commas.
-				industryFieldResultsDiv.innerHTML = "<p>" + resultsStringArray.toString().replace(/\,/g,"<br/>") + "</p>";
+				var dataAsString = "";
+				for ( var i = 0; i < resultsStringArray.length; i++ )
+				{
+					dataAsString += resultsStringArray[i];
+				}
+				industryFieldResultsDiv.innerHTML = "<br/>" + dataAsString;
+				
 			}
 
 			if ( popupId == 1 )

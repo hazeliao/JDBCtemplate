@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.DemoApplication;
 import com.example.domain.Form;
@@ -111,6 +112,29 @@ public class CreateFormController {
 		confirmation = form;
 		model.addAttribute("form", form);
 		return "createFormConfirm";
+	}
+	
+	@RequestMapping(value="/newformconfirmed", method = RequestMethod.POST)
+	public String newFormConfirmed(@RequestParam(value="value", required=false) Integer[] values, Model model){
+		DemoApplication.formDatabase.createForm(confirmation);		
+		confirmation.setId(DemoApplication.formDatabase.listForms().get((DemoApplication.formDatabase.listForms().size())-1).getId());
+		DemoApplication.formDatabase.createFormTerm(confirmation);
+		
+		HashMap<Integer, Integer> testmap = new HashMap<Integer, Integer>();
+		for(int i=0; i<values.length;i++){
+			testmap.put(Integer.parseInt(confirmation.getIndustryFieldIds().get(i)), values[i]);
+		}
+		System.out.println(testmap);
+		/*for (Map.Entry<Integer, Integer> entry : testmap.entrySet()){
+			
+			 System.out.println("keys:" + entry.getKey());
+			
+			 System.out.println("values:" + entry.getValue());
+			
+		}*/
+		
+		DemoApplication.formDatabase.createIndustryFieldForm(confirmation, testmap);
+		return "createFormConfirmed";
 	}
 
 }

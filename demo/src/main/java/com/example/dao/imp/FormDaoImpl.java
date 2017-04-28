@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.dao.FormDao;
 import com.example.domain.Form;
+import com.example.domain.IndustryField;
 import com.example.domain.ServiceLevel;
 import com.example.domain.Term;
 import com.example.mapper.FormMapper;
@@ -38,6 +39,7 @@ public class FormDaoImpl implements FormDao{
 	      System.out.println("Created Form Id = " + form.getId() + " Name = " + form.getName());
 	}
 	
+	
 
 	@Override
 	public void createFormTerm(Form form) {
@@ -60,6 +62,19 @@ public class FormDaoImpl implements FormDao{
 		}
 	}
 	
+	@Override
+	public void createIndustryFieldForm(Form form, HashMap<Integer, Integer> priorityMap) {
+		String SQL = "INSERT INTO IndustryFieldForm (industryFieldId, formId, priority) VALUES (:industryFieldId, :formId, :priority)";
+				 
+		for (Map.Entry<Integer, Integer> entry : priorityMap.entrySet()){
+			Map namedParameters = new HashMap();
+			namedParameters.put("industryFieldId", entry.getKey());
+			namedParameters.put("formId", form.getId());
+			namedParameters.put("priority", entry.getValue());
+			namedParameterJdbcTemplate.update(SQL, namedParameters);
+		}
+		
+	}
 
 	@Override
 	public Form getForm(Integer id){
@@ -118,6 +133,8 @@ public class FormDaoImpl implements FormDao{
 		namedParameterJdbcTemplate.update(SQL, namedParameters);
 		System.out.println("Updated Form with ID = " + id + " Name = " + name);
 	}
+
+	
 
 
 
